@@ -9,14 +9,13 @@
 </head>
 <body>
     1
-    <div class="card-body"></div>
-    <div id="ton-connect"></div>
-    <script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuid.min.js"></script>
-    <script src="https://unpkg.com/@tonconnect/sdk@3.0.5/dist/tonconnect-sdk.min.js"></script>
+    <div id="ton-connect" style="backgroundcolor: black;"></div>
+    {% comment %} <script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuid.min.js"></script>
+    <script src="https://unpkg.com/@tonconnect/sdk@3.0.5/dist/tonconnect-sdk.min.js"></script> {% endcomment %}
     <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+    {% comment %} <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script> {% endcomment %}
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+    {% comment %} <script>
         document.addEventListener('DOMContentLoaded', function () {
             const my_uuid = uuid.v4();
             function init() {
@@ -38,8 +37,8 @@
                 init();
             }
         })
-    </script>
-    <script>
+    </script> {% endcomment %}
+    {% comment %} <script>
         document.addEventListener('DOMContentLoaded', function () {
             const connector = new TonConnectSDK.TonConnect({
                 manifestUrl: 'https://ton-auth-dyanashek.amvera.io/tonconnect-manifest.json'
@@ -59,11 +58,20 @@
                 }
             });
         })
-    </script>
+    </script> {% endcomment %}
     <script>
         const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
             manifestUrl: 'https://ton-auth-dyanashek.amvera.io/tonconnect-manifest.json',
             buttonRootId: 'ton-connect'
+        });
+        tonConnectUI.uiOptions = {
+            language: 'ru',
+        };
+        tonConnectUI.onStatusChange((status) => {
+            console.log('it changed!!!!')
+            if (status === 'connected') {
+                console.log('Пользователь подключился!', connector.account);
+            }
         });
     </script>
 </body>
