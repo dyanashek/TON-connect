@@ -3,9 +3,11 @@
     ПРОФИЛЬ
     <a href='https://oauth.telegram.org/auth?bot_id=6430717403&origin=https://ton-auth-dyanashek.amvera.io&return_to=https://ton-auth-dyanashek.amvera.io/profile'>Telegram</a>
     <button onclick="transaction()">pay TON</button>
+    <button onclick="transactionUsdt()">pay USDT</button>
     <div id="ton-connect" style="backgroundcolor: black;"></div>
 {% endblock %}
 {% block js %}
+<script src="https://cdn.jsdelivr.net/npm/@ton/ton@15.1.0/dist/index.min.js"></script>
 <script>
     console.log(connector)
     async function transaction() {
@@ -18,7 +20,37 @@
                 }
             ]
         }
-        await tonConnectUI.sendTransaction(transaction);
+        try {
+            await tonConnectUI.sendTransaction(transaction);
+        } catch (error) {
+            console.log('cancelled')
+        }
+    }
+    async function transactionUsdt() {
+        const body = Ton.beginCell()
+            .storeUint(0xf8a7ea5, 32) // Jetton transfer opcode
+            .storeUint(0, 64) // Query ID
+            .storeCoins(Ton.toNano("0.001")) // Jetton amount (en to adjust decimals)
+            .storeAddress(Ton.Address.parse('UQD4yAYrNuLTEILR1A3-FjEetr2yd1swgN5mcgNj3aeQyKAM')) // Destination address
+            .storeAddress(Ton.Address.parse('UQD4yAYrNuLTEILR1A3-FjEetr2yd1swgN5mcgNj3aeQyKAM')) // Response destination
+            .storeCoins(Ton.toNano("0.05")) // Forward TON amount (if needed)
+            .endCell();
+        const jettonWalletContract = TON.Address.parse('sender-jetton-wallet');
+        const transaction = {
+            validUntil: Math.round(Date.now() / 1000) + 100,
+            messages: [
+                {
+                    address: jettonWalletContract, // Jetton wallet contract address
+                    amount: toNano("0.05").toString(), // Fee for the transaction
+                    payload: body.toBoc().toString("base64") 
+                }
+            ]
+        }
+        try {
+            await tonConnectUI.sendTransaction(transaction);
+        } catch (error) {
+            console.log('cancelled')
+        }
     }
 </script>
 {% endblock %}
