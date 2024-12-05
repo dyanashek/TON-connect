@@ -18,8 +18,11 @@
                 }
             ]
         }
-        l = await connector.sendTransaction(transaction);
-        console.log(l)
+        try {
+            l = await connector.sendTransaction(transaction);
+        } catch (error) {
+            console.log('cancelled')
+        }
     }
 </script>
 {% endblock %}
