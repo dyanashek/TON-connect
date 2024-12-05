@@ -1,1 +1,8 @@
 ПРОФИЛЬ
+<script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+<script>
+    const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+        manifestUrl: 'https://ton-auth-dyanashek.amvera.io/tonconnect-manifest.json',
+    });
+    console.log(tonConnectUI.connected)
+</script>
