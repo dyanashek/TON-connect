@@ -18,7 +18,8 @@
                 }
             ]
         }
-        await connector.sendTransaction(transaction);
+        l = await connector.sendTransaction(transaction);
+        console.log(l)
     }
 </script>
 {% endblock %}
