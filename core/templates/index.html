@@ -10,14 +10,15 @@
 <body>
     1
     <div class="card-body"></div>
+    <div id="ton-connect"></div>
     <script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuid.min.js"></script>
-    <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js"></script>
+    <script src="https://unpkg.com/@tonconnect/sdk@3.0.5/dist/tonconnect-sdk.min.js"></script>
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const my_uuid = uuid.v4();
-            console.log(my_uuid)
             function init() {
                 var tables = $(".card-body");
                 for (var table of tables) {
@@ -40,17 +41,30 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const tonConnect = new TonConnectSDK.TonConnect({
+            const connector = new TonConnectSDK.TonConnect({
                 manifestUrl: 'https://ton-auth-dyanashek.amvera.io/tonconnect-manifest.json'
             });
-
-            tonConnect.onStatusChange((status) => {
+            const walletConnectionSource = {
+                universalLink: 'https://app.tonkeeper.com/ton-connect',
+                bridgeUrl: 'https://bridge.tonapi.io/bridge'
+            }
+            wallets = connector.getWallets();
+            console.log(wallets)
+            const universalLink = connector.connect(walletConnectionSource);
+            console.log(universalLink)
+            connector.onStatusChange((status) => {
                 console.log('it changed!!!!')
                 if (status === 'connected') {
-                    console.log('Пользователь подключился!', tonConnect.account);
+                    console.log('Пользователь подключился!', connector.account);
                 }
             });
         })
+    </script>
+    <script>
+        const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+            manifestUrl: 'https://ton-auth-dyanashek.amvera.io/tonconnect-manifest.json',
+            buttonRootId: 'ton-connect'
+        });
     </script>
 </body>
 </html>
