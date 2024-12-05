@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <div class="card-body"></div>
+    <script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuid.min.js"></script>
+    <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js"></script>
+    <script src="{% static 'js/qrcode.min.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const my_uuid = uuid.v4();
+            console.log(my_uuid)
+            function init() {
+                var tables = $(".card-body");
+                for (var table of tables) {
+                    var url = `tc://?v=2&id=${my_uuid}&r=%7B%22manifestUrl%22%3A%22${encodeURIComponent('https://ya.ru')}%22%2C%22items%22%3A%5B%7B%22name%22%3A%22ton_addr%22%7D%5D%7D&ret=none`;
+                    console.log(url)
+                    var qrcode = new QRCode(table, {
+                        text: url,
+                        width: 256,
+                        height: 256,
+                        colorDark: "#000000",
+                        colorLight: "#ffffff",
+                        correctLevel: QRCode.CorrectLevel.H
+                    });
+                }
+            }
+            if (my_uuid) {
+                init();
+            }
+        })
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tonConnect = new TonConnect({
+                manifestUrl: 'http://127.0.0.1:8000/static/tonconnect-manifest.json'
+            });
+
+            tonConnect.onStatusChange((status) => {
+                if (status === 'connected') {
+                    console.log('Пользователь подключился!', tonConnect.account);
+                }
+            });
+        })
+    </script>
+</body>
+</html>
