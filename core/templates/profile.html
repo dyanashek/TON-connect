@@ -7,8 +7,7 @@
     <div id="ton-connect" style="backgroundcolor: black;"></div>
 {% endblock %}
 {% block js %}
-<script src="https://cdn.jsdelivr.net/npm/@ton/ton@15.1.0/dist/index.min.js"></script>
-<script>
+<script type="module">
     console.log(connector)
     async function transaction() {
         const transaction = {
@@ -27,15 +26,15 @@
         }
     }
     async function transactionUsdt() {
-        const body = Ton.beginCell()
+        const body = beginCell()
             .storeUint(0xf8a7ea5, 32) // Jetton transfer opcode
             .storeUint(0, 64) // Query ID
-            .storeCoins(Ton.toNano("0.001")) // Jetton amount (en to adjust decimals)
-            .storeAddress(Ton.Address.parse('UQD4yAYrNuLTEILR1A3-FjEetr2yd1swgN5mcgNj3aeQyKAM')) // Destination address
-            .storeAddress(Ton.Address.parse('UQD4yAYrNuLTEILR1A3-FjEetr2yd1swgN5mcgNj3aeQyKAM')) // Response destination
-            .storeCoins(Ton.toNano("0.05")) // Forward TON amount (if needed)
+            .storeCoins(toNano("0.001")) // Jetton amount (en to adjust decimals)
+            .storeAddress(Address.parse('UQD4yAYrNuLTEILR1A3-FjEetr2yd1swgN5mcgNj3aeQyKAM')) // Destination address
+            .storeAddress(Address.parse('UQD4yAYrNuLTEILR1A3-FjEetr2yd1swgN5mcgNj3aeQyKAM')) // Response destination
+            .storeCoins(toNano("0.05")) // Forward TON amount (if needed)
             .endCell();
-        const jettonWalletContract = TON.Address.parse('sender-jetton-wallet');
+        const jettonWalletContract = Address.parse('UQADDjEaut665leQJ7z4ckDSG4RmA2O8vtpzLP6vWgZdSCGS');
         const transaction = {
             validUntil: Math.round(Date.now() / 1000) + 100,
             messages: [
