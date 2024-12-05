@@ -4,5 +4,6 @@
     const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
         manifestUrl: 'https://ton-auth-dyanashek.amvera.io/tonconnect-manifest.json',
     });
+    tonConnectUI.restoreConnection()
     console.log(tonConnectUI.connected)
 </script>
