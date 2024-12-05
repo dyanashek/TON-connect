@@ -66,9 +66,13 @@
         });
         tonConnectUI.uiOptions = {
             language: 'ru',
+            actionsConfiguration: {
+                returnStrategy: '/profile/'
+            }
         };
         tonConnectUI.onStatusChange((status) => {
             console.log('it changed!!!!')
+            console.log(status)
             if (status === 'connected') {
                 console.log('Пользователь подключился!', connector.account);
             }
