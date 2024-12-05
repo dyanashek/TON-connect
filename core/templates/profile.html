@@ -1,11 +1,4 @@
-ПРОФИЛЬ
-<script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
-<script>
-    const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
-        manifestUrl: 'https://ton-auth-dyanashek.amvera.io/tonconnect-manifest.json',
-    });
-    (async () => {
-        await tonConnectUI.restoreConnection();
-    })();
-    console.log(tonConnectUI.connected)
-</script>
+{% extends "base.html" %}
+{% block content %}
+    ПРОФИЛЬ
+{% endblock %}

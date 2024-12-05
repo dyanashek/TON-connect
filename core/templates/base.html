@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    {% block content %}{% endblock %}
+    <script src="https://unpkg.com/@tonconnect/sdk@3.0.5/dist/tonconnect-sdk.min.js"></script>
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        const connector = new TonConnectSDK.TonConnect({
+            manifestUrl: 'https://ton-auth-dyanashek.amvera.io/tonconnect-manifest.json'
+        });
+        (async () => {
+            await connector.restoreConnection();
+        })();
+        const tonConnectUI = new TON_CONNECT_UI.TonConnectUI({
+            connector: connector,
+            buttonRootId: 'ton-connect'
+        });
+        tonConnectUI.uiOptions = {
+            language: 'ru',
+            actionsConfiguration: {
+                returnStrategy: '/profile'
+            }
+        };
+        tonConnectUI.onStatusChange((status) => {
+            console.log('it changed!!!!')
+            console.log(tonConnectUI.connected)
+            console.log('Пользователь подключился!', tonConnectUI.account);
+        });
+    </script>
+</body>
+</html>
