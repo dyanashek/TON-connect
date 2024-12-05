@@ -8,5 +8,5 @@ build:
   requirementsPath: requirements.txt
 run:
   persistenceMount: /data
-  containerPort: 80
+  containerPort: 8000
   command: gunicorn ton_connect.wsgi --bind 0.0.0.0:8000
