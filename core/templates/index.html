@@ -8,10 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
+    1
     <div class="card-body"></div>
     <script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuid.min.js"></script>
     <script src="https://unpkg.com/@tonconnect/sdk@latest/dist/tonconnect-sdk.min.js"></script>
-    <script src="{% static 'js/qrcode.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
@@ -20,7 +21,7 @@
             function init() {
                 var tables = $(".card-body");
                 for (var table of tables) {
-                    var url = `tc://?v=2&id=${my_uuid}&r=%7B%22manifestUrl%22%3A%22${encodeURIComponent('https://ya.ru')}%22%2C%22items%22%3A%5B%7B%22name%22%3A%22ton_addr%22%7D%5D%7D&ret=none`;
+                    var url = `tc://?v=2&id=${my_uuid}&r=%7B%22manifestUrl%22%3A%22${encodeURIComponent('https://ton-auth-dyanashek.amvera.io/')}%22%2C%22items%22%3A%5B%7B%22name%22%3A%22ton_addr%22%7D%5D%7D&ret=none`;
                     console.log(url)
                     var qrcode = new QRCode(table, {
                         text: url,
@@ -28,7 +29,7 @@
                         height: 256,
                         colorDark: "#000000",
                         colorLight: "#ffffff",
-                        correctLevel: QRCode.CorrectLevel.H
+                        correctLevel: QRCode.CorrectLevel.M
                     });
                 }
             }
@@ -39,8 +40,8 @@
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const tonConnect = new TonConnect({
-                manifestUrl: 'http://127.0.0.1:8000/static/tonconnect-manifest.json'
+            const tonConnect = new TonConnectSDK.TonConnect({
+                manifestUrl: 'https://ton-auth-dyanashek.amvera.io/tonconnect-manifest.json'
             });
 
             tonConnect.onStatusChange((status) => {

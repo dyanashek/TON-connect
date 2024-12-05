@@ -7,4 +7,5 @@ app_name = 'core'
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html'), name='loader'),
+    path('tonconnect-manifest.json', core_views.TonConnectManifestView.as_view(), name='tonconnect_manifest'),
     ]
