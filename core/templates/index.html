@@ -21,7 +21,7 @@
             function init() {
                 var tables = $(".card-body");
                 for (var table of tables) {
-                    var url = `tc://?v=2&id=${my_uuid}&r=%7B%22manifestUrl%22%3A%22${encodeURIComponent('https://ton-auth-dyanashek.amvera.io/')}%22%2C%22items%22%3A%5B%7B%22name%22%3A%22ton_addr%22%7D%5D%7D&ret=none`;
+                    var url = `tc://?v=2&id=${my_uuid}&r=%7B%22manifestUrl%22%3A%22${encodeURIComponent('https://ton-auth-dyanashek.amvera.io/tonconnect-manifest.json')}%22%2C%22items%22%3A%5B%7B%22name%22%3A%22ton_addr%22%7D%5D%7D&ret=none`;
                     console.log(url)
                     var qrcode = new QRCode(table, {
                         text: url,
