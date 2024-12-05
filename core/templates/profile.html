@@ -18,11 +18,7 @@
                 }
             ]
         }
-        try {
-            l = await tonConnectUI.sendTransaction(transaction);
-        } catch (error) {
-            console.log('cancelled')
-        }
+        await tonConnectUI.sendTransaction(transaction);
     }
 </script>
 {% endblock %}
