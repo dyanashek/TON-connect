@@ -45,6 +45,7 @@
             });
 
             tonConnect.onStatusChange((status) => {
+                console.log('it changed!!!!')
                 if (status === 'connected') {
                     console.log('Пользователь подключился!', tonConnect.account);
                 }
