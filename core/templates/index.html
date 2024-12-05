@@ -72,7 +72,7 @@
         };
         tonConnectUI.onStatusChange((status) => {
             console.log('it changed!!!!')
-            console.log(status)
+            console.log(tonConnectUI.connected)
             if (status === 'connected') {
                 console.log('Пользователь подключился!', connector.account);
             }
