@@ -2,10 +2,23 @@
 {% block content %}
     ПРОФИЛЬ
     <a href='https://oauth.telegram.org/auth?bot_id=6430717403&origin=https://ton-auth-dyanashek.amvera.io&return_to=https://ton-auth-dyanashek.amvera.io/profile'>Telegram</a>
+    <button onclick="transaction()">pay TON</button>
     <div id="ton-connect" style="backgroundcolor: black;"></div>
 {% endblock %}
 {% block js %}
 <script>
     console.log(connector)
+    async function transaction() {
+        const transaction = {
+            validUntil: Math.round(Date.now() / 1000) + 100,
+            messages: [
+                {
+                    address: '0:0000000000000000000000000000000000000000000000000000000000000000',
+                    amount: 1000000,
+                }
+            ]
+        }
+        await connector.sendTransaction(transaction);
+    }
 </script>
 {% endblock %}
