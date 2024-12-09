@@ -26,7 +26,7 @@
         }
     }
     async function getAddress(ownerAddress, jettonMasterAddress) {
-        const response = await tonConnectUI.sendRequest({
+        const response = await tonConnectUI.invoke({
             method: 'runGetMethod',
             params: {
                 address: jettonMasterAddress,
