@@ -8,8 +8,8 @@ from django.core.management import BaseCommand
 
 class Command(BaseCommand):
     JETTON_TRANSFER_OP_CODE = 0x0f8a7ea5
-    WALLET_DST = "UQADDjEaut665leQJ7z4ckDSG4RmA2O8vtpzLP6vWgZdSCGS"
-    WALLET_SRC = "UQADDjEaut665leQJ7z4ckDSG4RmA2O8vtpzLP6vWgZdSCGS"
+    WALLET_DST = "EQC0_FEN6VxJXACAy2Vp_LbMrnYAoSCpDlgDZ4cZPoAPnBAe"
+    WALLET_SRC = "EQDmXtHV9cL3I2G3hMs8lEfG2gYmseRjqy1cOprg-KnwfmT-"
 
     def _create_internal_message(self):
         body = Cell()
@@ -18,7 +18,7 @@ class Command(BaseCommand):
         # storeUint (64 bits): query_id:uint64
         body.bits.write_uint(0, 64)
         # storeCoins: amount:(VarUInteger 16)
-        body.bits.write_coins(to_nano(100, 'nanoton'))  # Jetton amount (TONs, decimals = 9 by default)
+        body.bits.write_coins(10000000)  # Jetton amount (TONs, decimals = 9 by default)
         # storeAddress: destination:MsgAddress
         body.bits.write_address(Address(self.WALLET_DST))
         # storeAddress: response_destination:MsgAddress
@@ -26,7 +26,7 @@ class Command(BaseCommand):
         # storeUint (1 bit): custom_payload:(Maybe ^Cell)
         body.bits.write_uint(0, 1)
         # storeCoins: forward_ton_amount:(VarUInteger 16)
-        body.bits.write_coins(to_nano(100, 'nanoton'))  # Forward TON amount
+        body.bits.write_coins(1000000)  # Forward TON amount
         # storeUint (1 bit): forward_payload:(Either Cell ^Cell)
         body.bits.write_uint(0, 1)
 
@@ -35,4 +35,3 @@ class Command(BaseCommand):
     def handle(self, *args, **options):  
         l = self._create_internal_message()
         print(base64.b64encode(l.to_boc()).decode("utf-8"))
-
