@@ -9,7 +9,7 @@ from django.core.management import BaseCommand
 class Command(BaseCommand):
     JETTON_TRANSFER_OP_CODE = 0x0f8a7ea5
     WALLET_DST = "EQC0_FEN6VxJXACAy2Vp_LbMrnYAoSCpDlgDZ4cZPoAPnBAe"
-    WALLET_SRC = "EQDmXtHV9cL3I2G3hMs8lEfG2gYmseRjqy1cOprg-KnwfmT-"
+    WALLET_SRC = "EQC0_FEN6VxJXACAy2Vp_LbMrnYAoSCpDlgDZ4cZPoAPnBAe"
 
     def _create_internal_message(self):
         body = Cell()
