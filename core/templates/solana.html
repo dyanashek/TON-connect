@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solana Wallet Connect</title>
+  <script src="https://cdn.jsdelivr.net/npm/@solana/wallet-adapter-wallets"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@solana/wallet-adapter-base"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@solana/wallet-adapter-react"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@solana/wallet-adapter-react-ui"></script>
+</head>
+<body>
+
+  <h1>Авторизация через Solana</h1>
+  <button id="connectButton">Подключить кошелек</button>
+  <button id="disconnectButton" style="display:none;">Отключить кошелек</button>
+
+  <script>
+    const { PhantomWalletAdapter } = window.solanaWalletAdapterWallets;
+    const { ConnectionProvider, WalletProvider, useWallet } = window.solanaWalletAdapterReact;
+    const { WalletModalProvider } = window.solanaWalletAdapterReactUI;
+
+    let currentWallet = null;
+
+    document.getElementById('connectButton').addEventListener('click', async () => {
+      // Инициализация кошелька Phantom
+      currentWallet = new PhantomWalletAdapter();
+      
+      // Подключаем кошелек
+      await currentWallet.connect();
+      
+      // Отображаем кнопку отключения
+      document.getElementById('connectButton').style.display = 'none';
+      document.getElementById('disconnectButton').style.display = 'inline';
+      alert("Кошелек подключен!");
+    });
+
+    document.getElementById('disconnectButton').addEventListener('click', async () => {
+      if (currentWallet) {
+        await currentWallet.disconnect();
+        currentWallet = null;
+        
+        // Отображаем кнопку подключения
+        document.getElementById('connectButton').style.display = 'inline';
+        document.getElementById('disconnectButton').style.display = 'none';
+        alert("Кошелек отключен!");
+      }
+    });
+  </script>
+
+</body>
+</html>

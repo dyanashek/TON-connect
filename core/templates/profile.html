@@ -25,52 +25,14 @@
             console.log('cancelled')
         }
     }
-    async function getAddress(ownerAddress, jettonMasterAddress) {
-        const response = await tonConnectUI.invoke({
-            method: 'runGetMethod',
-            params: {
-                address: jettonMasterAddress,
-                method: 'get_wallet_address',
-                stack: [
-                    ['tvmSlice', ownerAddress]  // Адрес отправителя
-                ],
-            },
-        });
-    
-        return response.stack[0].cell; // Jetton Wallet-адрес
-    };
-    async function main() {
-        const ownerAddress = '0:f8c8062b36e2d31082d1d40dfe16311eb6bdb2775b3080de66720363dda790c8';
-        const jettonMasterAddress = 'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs';
-    
-        try {
-            const jettonWalletAddress = await getAddress(ownerAddress, jettonMasterAddress);
-            console.log('Jetton Wallet Address:', jettonWalletAddress);
-        } catch (error) {
-            console.error('Error fetching Jetton Wallet Address:', error);
-        }
-    }
-    
-    main();
-</script>
-<script>
-    {% comment %} async function transactionUsdt() {
-        const body = beginCell()
-            .storeUint(0xf8a7ea5, 32) // Jetton transfer opcode
-            .storeUint(0, 64) // Query ID
-            .storeCoins(toNano("0.001")) // Jetton amount (en to adjust decimals)
-            .storeAddress(Address.parse('UQD4yAYrNuLTEILR1A3-FjEetr2yd1swgN5mcgNj3aeQyKAM')) // Destination address
-            .storeAddress(Address.parse('UQD4yAYrNuLTEILR1A3-FjEetr2yd1swgN5mcgNj3aeQyKAM')) // Response destination
-            .storeCoins(toNano("0.05")) // Forward TON amount (if needed)
-            .endCell();
-        const jettonWalletContract = Address.parse('UQADDjEaut665leQJ7z4ckDSG4RmA2O8vtpzLP6vWgZdSCGS');
+    async function transactionUsdt() {
         const transaction = {
             validUntil: Math.round(Date.now() / 1000) + 100,
             messages: [
                 {
-                    address: jettonWalletContract,
+                    address: 'EQBkQP48aUEDg5Y5RRc8SxFHm_C5tNcJDlh3e9pYHC-ZmG2M',
                     amount: toNano("0.05").toString(),
-                    payload: body.toBoc().toString("base64") 
+                    payload: 'te6ccsEBAQEAUwBTAKIPin6lAAAAAAAAAAAQGAFp+KIb0riSuAEBlsrT+W2ZXOwBQkFSHLAGzw4yfQAfOQA5l7R1fXC9yNht4TLPJRHxtoGJrHkY6stXDqa4Pip8H4CKP6EK', 
                 }
             ]
         }
@@ -79,6 +41,6 @@
         } catch (error) {
             console.log('cancelled')
         }
-    } {% endcomment %}
+    }
 </script>
 {% endblock %}
