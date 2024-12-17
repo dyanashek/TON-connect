@@ -8,8 +8,8 @@ from django.core.management import BaseCommand
 
 class Command(BaseCommand):
     JETTON_TRANSFER_OP_CODE = 0x0f8a7ea5
-    WALLET_DST = "EQD4yAYrNuLTEILR1A3-FjEetr2yd1swgN5mcgNj3aeQyP3J"
-    WALLET_SRC = None
+    WALLET_DST = "UQD4yAYrNuLTEILR1A3-FjEetr2yd1swgN5mcgNj3aeQyKAM"
+    WALLET_SRC = "UQADDjEaut665leQJ7z4ckDSG4RmA2O8vtpzLP6vWgZdSCGS"
 
     def _create_internal_message(self):
         body = Cell()
@@ -22,14 +22,13 @@ class Command(BaseCommand):
         # storeAddress: destination:MsgAddress
         body.bits.write_address(Address(self.WALLET_DST))
         # storeAddress: response_destination:MsgAddress
-        body.bits.write_address(None)
+        body.bits.write_address(Address(self.WALLET_SRC))
         # storeUint (1 bit): custom_payload:(Maybe ^Cell)
         body.bits.write_uint(0, 1)
         # storeCoins: forward_ton_amount:(VarUInteger 16)
         body.bits.write_coins(1000000)  # Forward TON amount
         # storeUint (1 bit): forward_payload:(Either Cell ^Cell)
         body.bits.write_uint(0, 1)
-        print(Address(self.WALLET_DST).is_bounceable)
         return body
 
     def handle(self, *args, **options):  
