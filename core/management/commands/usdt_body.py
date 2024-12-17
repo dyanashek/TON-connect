@@ -8,7 +8,7 @@ from django.core.management import BaseCommand
 
 class Command(BaseCommand):
     JETTON_TRANSFER_OP_CODE = 0x0f8a7ea5
-    WALLET_DST = "UQD4yAYrNuLTEILR1A3-FjEetr2yd1swgN5mcgNj3aeQyKAM"
+    WALLET_DST = "EQD4yAYrNuLTEILR1A3-FjEetr2yd1swgN5mcgNj3aeQyP3J"
     WALLET_SRC = None
 
     def _create_internal_message(self):
@@ -29,7 +29,7 @@ class Command(BaseCommand):
         body.bits.write_coins(1000000)  # Forward TON amount
         # storeUint (1 bit): forward_payload:(Either Cell ^Cell)
         body.bits.write_uint(0, 1)
-
+        print(Address(self.WALLET_DST).is_bounceable)
         return body
 
     def handle(self, *args, **options):  
