@@ -26,7 +26,7 @@ class Command(BaseCommand):
         # storeUint (1 bit): custom_payload:(Maybe ^Cell)
         body.bits.write_uint(0, 1)
         # storeCoins: forward_ton_amount:(VarUInteger 16)
-        body.bits.write_coins(1000000)  # Forward TON amount
+        body.bits.write_coins(5000000)  # Forward TON amount
         # storeUint (1 bit): forward_payload:(Either Cell ^Cell)
         body.bits.write_uint(0, 1)
         return body
