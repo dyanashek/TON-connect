@@ -5,17 +5,6 @@ import "./modules/inputmask.min.js";
 import "./modules/bootstrap.bundle.min.js";
 import AOS from "../../node_modules/aos/dist/aos.js";
 import { Fancybox } from "./modules/fancybox.esm.js";
-// import './components.js';
-import { Buffer } from 'buffer';
-global.Buffer = Buffer;
-// import { beginCell, toNano, Address } from '@ton/ton'
-
-// console.log(Buffer)
-console.log('min-js')
-import TonWeb from "tonweb";
-
-const tonweb = new TonWeb();
-console.log(tonweb)
 
 flsFunctions.isWebp();
 
