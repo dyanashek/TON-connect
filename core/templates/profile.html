@@ -14,11 +14,7 @@
         new TonWeb.HttpProvider("https://toncenter.com/api/v2/jsonRPC")
       );
 
-    const tonTonClient = new TonClient({
-        endpoint: 'https://toncenter.com/api/v2/jsonRPC',
-    });
-    console.log(tonTonClient)
-    
+
     async function transaction() {
         const transaction = {
             validUntil: Math.round(Date.now() / 1000) + 100,
