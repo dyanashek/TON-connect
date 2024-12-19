@@ -68,7 +68,8 @@
 
         console.log(payloadCell)
         const boc = await payloadCell.toBoc()
-        console.log(boc)
+        console.log(boc.toString('base64'))
+
         const bocSTR = btoa(String.fromCharCode(...new Uint8Array(boc)));
 
         return bocSTR
