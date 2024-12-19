@@ -32,6 +32,7 @@
     }
 
     async function transactionUsdt() {
+        console.log(createJettonTransferPayload('UQD4yAYrNuLTEILR1A3-FjEetr2yd1swgN5mcgNj3aeQyKAM', 0.1))
         const transaction = {
             validUntil: Math.round(Date.now() / 1000) + 100,
             messages: [
