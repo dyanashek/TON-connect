@@ -38,7 +38,7 @@
             validUntil: Math.round(Date.now() / 1000) + 100,
             messages: [
                 {
-                    address: 'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs',
+                    address: 'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs'.toString(true, true, true),
                     amount: tonweb.utils.toNano("0.05").toString(), // Minimal amount of TON to cover fees
                     payload: transactionPayload, // Payload for Jetton transfer 
                 }
@@ -69,8 +69,6 @@
 
         return bocSTR
     }
-    // te6cckEBAwEAnQABHCmpoxf/////AAAAAAADAQFoYgBYWVjjvdmacGmzShvSVmXI447mK+Iwd/RTV2YN4rCG3aAX14QAAAAAAAAAAAAAAAAAAQIApg+KfqUAAAAAAAAAADAYaggBG4qUOxqzbpcestwD4a5ebdXFAGUwiwJBmMq4bAIDnysAEOVCdywStGXFsXONMJaCQB8v4y/pdX/OJ2dPjsTBxqrAkqjOzA==
-    // te6cckECFgEAArEAAgE0ARUBFP8A9KQT9LzyyAsCAgEgAw4CAUgEBQLc0CDXScEgkVuPYyDXCx8gghBleHRuvSGCEHNpbnS9sJJfA+CCEGV4dG66jrSAINchAdB01yH6QDD6RPgo+kQwWL2RW+DtRNCBAUHXIfQFgwf0Dm+hMZEw4YBA1yFwf9s84DEg10mBAoC5kTDgcOIREAIBIAYNAgEgBwoCAW4ICQAZrc52omhAIOuQ64X/wAAZrx32omhAEOuQ64WPwAIBSAsMABezJftRNBx1yHXCx+AAEbJi+1E0NcKAIAAZvl8PaiaECAoOuQ+gLAEC8g8BHiDXCx+CEHNpZ2668uCKfxAB5o7w7aLt+yGDCNciAoMI1yMggCDXIdMf0x/TH+1E0NIA0x8g0x/T/9cKAAr5AUDM+RCaKJRfCtsx4fLAh98Cs1AHsPLQhFEluvLghVA2uvLghvgju/LQiCKS+ADeAaR/yMoAyx8BzxbJ7VQgkvgP3nDbPNgRA/btou37AvQEIW6SbCGOTAIh1zkwcJQhxwCzji0B1yggdh5DbCDXScAI8uCTINdKwALy4JMg1x0GxxLCAFIwsPLQiddM1zkwAaTobBKEB7vy4JPXSsAA8uCT7VXi0gABwACRW+Dr1ywIFCCRcJYB1ywIHBLiUhCx4w8g10oSExQAlgH6QAH6RPgo+kQwWLry4JHtRNCBAUHXGPQFBJ1/yMoAQASDB/RT8uCLjhQDgwf0W/LgjCLXCgAhbgGzsPLQkOLIUAPPFhL0AMntVAByMNcsCCSOLSHy4JLSAO1E0NIAURO68tCPVFAwkTGcAYEBQNch1woA8uCO4sjKAFjPFsntVJPywI3iABCTW9sx4ddM0ABRgAAAAD///4iUDlQS5zKL114+bN6qGXvBroZlQ4Xt/tlEgF5ARkYszqBTsDOt
 </script>
 {% endblock %}
 
