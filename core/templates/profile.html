@@ -53,14 +53,13 @@
     function createJettonTransferPayload(toAddress, amount) {
         const payloadCell = new tonweb.boc.Cell();
         payloadCell.bits.writeUint(0xf8a7ea5, 32); // Write query_id
+        payloadCell.bits.writeUint(0, 64);
         payloadCell.bits.writeCoins(tonweb.utils.toNano(amount.toString())); // Convert USDT amount to Nano and write it
         payloadCell.bits.writeAddress(new tonweb.Address(toAddress)); // Write recipient address
         payloadCell.bits.writeAddress(
           new tonweb.Address(tonConnectUI.wallet.account.address)
         );
-        payloadCell.bits.writeBit(0); // custom_payload, absent
         payloadCell.bits.writeCoins(new tonweb.utils.BN(0)); // forward_ton_amount
-        payloadCell.bits.writeBit(0); // forward_payload, absent
         return payloadCell;
     }
     // te6cckEBAwEAnQABHCmpoxf/////AAAAAAADAQFoYgBYWVjjvdmacGmzShvSVmXI447mK+Iwd/RTV2YN4rCG3aAX14QAAAAAAAAAAAAAAAAAAQIApg+KfqUAAAAAAAAAADAYaggBG4qUOxqzbpcestwD4a5ebdXFAGUwiwJBmMq4bAIDnysAEOVCdywStGXFsXONMJaCQB8v4y/pdX/OJ2dPjsTBxqrAkqjOzA==
