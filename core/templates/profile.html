@@ -66,7 +66,9 @@
         payloadCell.bits.writeCoins(new tonweb.utils.BN(0.1)); // forward_ton_amount
         payloadCell.bits.writeBit(0); 
 
+        console.log(payloadCell)
         const boc = await payloadCell.toBoc()
+        console.log(boc)
         const bocSTR = btoa(String.fromCharCode(...new Uint8Array(boc)));
 
         return bocSTR
