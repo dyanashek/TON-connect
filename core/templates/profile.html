@@ -33,13 +33,13 @@
     }
 
     async function transactionUsdt() {
-        const transactionPayload = await createJettonTransferPayload('UQD4yAYrNuLTEILR1A3-FjEetr2yd1swgN5mcgNj3aeQyKAM', 0.1)
+        const transactionPayload = await createJettonTransferPayload('EQAk1SmGiPPCvMVHF-CzAjqTJTQ-00HobX2X6MQBkCFhEivc', 0.1)
         console.log(transactionPayload)
         const transaction = {
             validUntil: Math.round(Date.now() / 1000) + 100,
             messages: [
                 {
-                    address: 'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs'.toString(true, true, true),
+                    address: 'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs',
                     amount: tonweb.utils.toNano("0.05").toString(), // Minimal amount of TON to cover fees
                     payload: transactionPayload, // Payload for Jetton transfer 
                     stateInit: null,
