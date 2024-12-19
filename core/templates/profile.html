@@ -62,7 +62,7 @@
           new tonweb.Address(tonConnectUI.wallet.account.address)
         );
         payloadCell.bits.writeBit(0); 
-        payloadCell.bits.writeCoins(new tonweb.utils.BN(0)); // forward_ton_amount
+        payloadCell.bits.writeCoins(new tonweb.utils.BN(0.1)); // forward_ton_amount
         payloadCell.bits.writeBit(0); 
 
         const boc = await payloadCell.toBoc()
