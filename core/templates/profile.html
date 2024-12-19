@@ -60,7 +60,7 @@
         );
         payloadCell.bits.writeCoins(new tonweb.utils.BN(0)); // forward_ton_amount
         const boc = await payloadCell.toBoc()
-        const bocSTR = Buffer.from(boc).toString("base64");
+        const bocSTR = btoa(String.fromCharCode(...new Uint8Array(boc)));
         console.log(bocSTR)
         return bocSTR
     }
