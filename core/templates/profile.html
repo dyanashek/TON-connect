@@ -33,7 +33,7 @@
     }
 
     async function transactionUsdt() {
-        const transactionPayload = await createJettonTransferPayload('EQAk1SmGiPPCvMVHF-CzAjqTJTQ-00HobX2X6MQBkCFhEivc', 0.1)
+        const transactionPayload = await createJettonTransferPayload('EQAk1SmGiPPCvMVHF-CzAjqTJTQ-00HobX2X6MQBkCFhEivc', 1)
         console.log(transactionPayload)
         const transaction = {
             validUntil: Math.round(Date.now() / 1000) + 100,
@@ -56,7 +56,7 @@
     async function createJettonTransferPayload(toAddress, amount) {
         const payloadCell = new tonweb.boc.Cell();
         payloadCell.bits.writeUint(0xf8a7ea5, 32); // Write query_id
-        payloadCell.bits.writeUint(1, 64);
+        payloadCell.bits.writeUint(0, 64);
         payloadCell.bits.writeCoins(tonweb.utils.toNano(amount.toString())); // Convert USDT amount to Nano and write it
         payloadCell.bits.writeAddress(new tonweb.Address(toAddress)); // Write recipient address
         payloadCell.bits.writeAddress(
