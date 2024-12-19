@@ -39,10 +39,10 @@
             messages: [
                 {
                     address: 'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs',
-                    amount: 500000, // Minimal amount of TON to cover fees
+                    amount: tonweb.utils.toNano("0.05").toString(), // Minimal amount of TON to cover fees
                     payload: transactionPayload, // Payload for Jetton transfer 
                 }
-            ]
+            ],
         }
         try {
             await tonConnectUI.sendTransaction(transaction);
@@ -60,7 +60,9 @@
         payloadCell.bits.writeAddress(
           new tonweb.Address(tonConnectUI.wallet.account.address)
         );
+        payloadCell.bits.writeBit(0); 
         payloadCell.bits.writeCoins(new tonweb.utils.BN(0)); // forward_ton_amount
+        payloadCell.bits.writeBit(0); 
         const boc = await payloadCell.toBoc()
         const bocSTR = btoa(String.fromCharCode(...new Uint8Array(boc)));
         console.log(bocSTR)
