@@ -37,8 +37,8 @@
             messages: [
                 {
                     address: 'EQCxE6mUtQJKFnGfaROTKOt1lZbDiiX1kCixRv7Nw2Id_sDs',
-                    amount: tonweb.utils.toNano("0.1"), // Minimal amount of TON to cover fees
-                    payload: createJettonTransferPayload('UQD4yAYrNuLTEILR1A3-FjEetr2yd1swgN5mcgNj3aeQyKAM', 5), // Payload for Jetton transfer 
+                    amount: 100000000, // Minimal amount of TON to cover fees
+                    payload: createJettonTransferPayload('UQD4yAYrNuLTEILR1A3-FjEetr2yd1swgN5mcgNj3aeQyKAM', 0.1), // Payload for Jetton transfer 
                 }
             ]
         }
@@ -57,11 +57,11 @@
         payloadCell.bits.writeAddress(
           new tonweb.Address(tonConnectUI.wallet.account.address)
         );
-        console.log(new tonweb.Address(tonConnectUI.wallet.account.address))
+        console.log(tonConnectUI.wallet.account.address)
         payloadCell.bits.writeBit(0); // custom_payload, absent
         payloadCell.bits.writeCoins(new tonweb.utils.BN(0)); // forward_ton_amount
         payloadCell.bits.writeBit(0); // forward_payload, absent
-
+        console.log(payloadCell)
         return payloadCell;
     }
     // te6cckEBAwEAnQABHCmpoxf/////AAAAAAADAQFoYgBYWVjjvdmacGmzShvSVmXI447mK+Iwd/RTV2YN4rCG3aAX14QAAAAAAAAAAAAAAAAAAQIApg+KfqUAAAAAAAAAADAYaggBG4qUOxqzbpcestwD4a5ebdXFAGUwiwJBmMq4bAIDnysAEOVCdywStGXFsXONMJaCQB8v4y/pdX/OJ2dPjsTBxqrAkqjOzA==
